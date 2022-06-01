@@ -40,6 +40,7 @@ pub struct Client {
         Arc<matrix_sdk::locks::RwLock<Option<SessionVerificationController>>>,
 }
 
+#[uniffi::export]
 impl Client {
     pub fn new(client: MatrixClient, state: ClientState) -> Self {
         Client {
@@ -217,6 +218,7 @@ impl Client {
     }
 }
 
+#[uniffi::export]
 pub fn gen_transaction_id() -> String {
     TransactionId::new().to_string()
 }

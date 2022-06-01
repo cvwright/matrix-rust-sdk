@@ -26,26 +26,29 @@ impl ClientBuilder {
             inner: MatrixClient::builder().user_agent("rust-sdk-ios"),
         }
     }
+}
 
-    pub fn base_path(self: Arc<Self>, path: String) -> Arc<Self> {
+#[uniffi::export]
+impl ClientBuilder {
+    pub fn base_path(self: Arc<ClientBuilder>, path: String) -> Arc<ClientBuilder> {
         let mut builder = unwrap_or_clone_arc(self);
         builder.base_path = Some(path);
         Arc::new(builder)
     }
 
-    pub fn username(self: Arc<Self>, username: String) -> Arc<Self> {
+    pub fn username(self: Arc<ClientBuilder>, username: String) -> Arc<ClientBuilder> {
         let mut builder = unwrap_or_clone_arc(self);
         builder.username = Some(username);
         Arc::new(builder)
     }
 
-    pub fn homeserver_url(self: Arc<Self>, url: String) -> Arc<Self> {
+    pub fn homeserver_url(self: Arc<ClientBuilder>, url: String) -> Arc<ClientBuilder> {
         let mut builder = unwrap_or_clone_arc(self);
         builder.homeserver_url = Some(url);
         Arc::new(builder)
     }
 
-    pub fn build(self: Arc<Self>) -> anyhow::Result<Arc<Client>> {
+    pub fn build(self: Arc<ClientBuilder>) -> anyhow::Result<Arc<Client>> {
         let builder = unwrap_or_clone_arc(self);
 
         let base_path = builder.base_path.context("Base path was not set")?;

@@ -1,8 +1,4 @@
-namespace sdk {
-    MediaSource media_source_from_url(string url);
-    MessageEventContent message_event_content_from_markdown(string md);
-    string gen_transaction_id();
-};
+namespace matrix_sdk_ffi {};
 
 [Error]
 interface ClientError {
@@ -15,18 +11,6 @@ callback interface ClientDelegate {
 
 interface ClientBuilder {
     constructor();
-
-    [Self=ByArc]
-    ClientBuilder base_path(string path);
-
-    [Self=ByArc]
-    ClientBuilder username(string username);
-
-    [Self=ByArc]
-    ClientBuilder homeserver_url(string url);
-
-    [Throws=ClientError, Self=ByArc]
-    Client build();
 };
 
 interface Client {
@@ -110,43 +94,7 @@ interface BackwardsStream {
 
 interface MessageEventContent {};
 
-interface AnyMessage {
-    TextMessage? text_message();
-    ImageMessage? image_message();
-    NoticeMessage? notice_message();
-    EmoteMessage? emote_message();
-};
-
-interface BaseMessage {
-    string id();
-    string body();
-    string sender();
-    u64 origin_server_ts();
-    string? transaction_id();
-};
-
-interface TextMessage {
-    BaseMessage base_message();
-    string? html_body();
-};
-
-interface ImageMessage {
-    BaseMessage base_message();
-    MediaSource source();
-    u64? width();
-    u64? height();
-    string? blurhash();
-};
-
-interface NoticeMessage {
-    BaseMessage base_message();
-    string? html_body();
-};
-
-interface EmoteMessage {
-    BaseMessage base_message();
-    string? html_body();
-};
+interface AnyMessage {};
 
 interface MediaSource {
     string url();

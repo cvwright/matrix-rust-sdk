@@ -4,6 +4,7 @@ generated
 master.zip
 emsdk-*
 .idea/
+**/.uniffi
 
 ## User settings
 xcuserdata/

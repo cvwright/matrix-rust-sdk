@@ -24,6 +24,7 @@ pub struct BaseMessage {
     transaction_id: Option<String>,
 }
 
+#[uniffi::export]
 impl BaseMessage {
     pub fn id(&self) -> String {
         self.id.clone()
@@ -51,6 +52,7 @@ pub struct TextMessage {
     html_body: Option<String>,
 }
 
+#[uniffi::export]
 impl TextMessage {
     pub fn base_message(&self) -> Arc<BaseMessage> {
         self.base_message.clone()
@@ -67,6 +69,7 @@ pub struct ImageMessage {
     info: Option<Box<ImageInfo>>,
 }
 
+#[uniffi::export]
 impl ImageMessage {
     pub fn base_message(&self) -> Arc<BaseMessage> {
         self.base_message.clone()
@@ -94,6 +97,7 @@ pub struct NoticeMessage {
     html_body: Option<String>,
 }
 
+#[uniffi::export]
 impl NoticeMessage {
     pub fn base_message(&self) -> Arc<BaseMessage> {
         self.base_message.clone()
@@ -109,6 +113,7 @@ pub struct EmoteMessage {
     html_body: Option<String>,
 }
 
+#[uniffi::export]
 impl EmoteMessage {
     pub fn base_message(&self) -> Arc<BaseMessage> {
         self.base_message.clone()
@@ -126,6 +131,7 @@ pub struct AnyMessage {
     emote: Option<Arc<EmoteMessage>>,
 }
 
+#[uniffi::export]
 impl AnyMessage {
     pub fn text_message(&self) -> Option<Arc<TextMessage>> {
         self.text.clone()
@@ -235,10 +241,12 @@ pub fn sync_event_to_message(sync_event: SyncRoomEvent) -> Option<Arc<AnyMessage
     }
 }
 
+#[uniffi::export]
 pub fn media_source_from_url(url: String) -> Arc<MediaSource> {
     Arc::new(MediaSource::Plain(url.into()))
 }
 
+#[uniffi::export]
 pub fn message_event_content_from_markdown(md: String) -> Arc<MessageEventContent> {
     Arc::new(MessageEventContent::text_markdown(md))
 }
