@@ -26,6 +26,28 @@ use super::{EventType, ToDeviceEvent};
 /// The `m.room_key` to-device event.
 pub type RoomKeyEvent = ToDeviceEvent<RoomKeyContent>;
 
+impl EventType for RoomKeyContent {
+    fn event_type(&self) -> &str {
+        "m.room_key"
+    }
+}
+
+/// The `m.room_key` event content.
+///
+/// This is an enum over the different room key algorithms we support.
+///
+/// This event type is used to exchange keys for end-to-end encryption.
+/// Typically it is encrypted as an m.room.encrypted event, then sent as a
+/// to-device event.
+#[derive(Debug, Deserialize)]
+#[serde(try_from = "RoomKeyHelper")]
+pub enum RoomKeyContent {
+    /// The `m.megolm.v1.aes-sha2` variant of the `m.room_key` content.
+    MegolmV1AesSha2(Box<MegolmV1AesSha2Content>),
+    /// An unknown and unsupported variant of the `m.room_key` content.
+    Unknown(UnknownRoomKey),
+}
+
 impl RoomKeyContent {
     pub(super) fn serialize_zeroized(&self) -> Result<Raw<RoomKeyContent>, serde_json::Error> {
         #[derive(Serialize)]
@@ -56,28 +78,6 @@ impl RoomKeyContent {
             RoomKeyContent::Unknown(c) => Ok(Raw::from_json(to_raw_value(&c)?)),
         }
     }
-}
-
-impl EventType for RoomKeyContent {
-    fn event_type(&self) -> &str {
-        "m.room_key"
-    }
-}
-
-/// The `m.room_key` event content.
-///
-/// This is an enum over the different room key algorithms we support.
-///
-/// This event type is used to exchange keys for end-to-end encryption.
-/// Typically it is encrypted as an m.room.encrypted event, then sent as a
-/// to-device event.
-#[derive(Debug, Deserialize)]
-#[serde(try_from = "RoomKeyHelper")]
-pub enum RoomKeyContent {
-    /// The `m.megolm.v1.aes-sha2` variant of the `m.room_key` content.
-    MegolmV1AesSha2(Box<MegolmV1AesSha2Content>),
-    /// An unknown and unsupported variant of the `m.room_key` content.
-    Unknown(UnknownRoomKey),
 }
 
 /// The `m.megolm.v1.aes-sha2` variant of the `m.room_key` content.
