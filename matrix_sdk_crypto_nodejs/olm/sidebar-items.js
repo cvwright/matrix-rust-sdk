@@ -1,0 +1,1 @@
+window.SIDEBAR_ITEMS = {"struct":[["CrossSigningStatus","Struct representing the state of our private cross signing keys, it shows which private cross signing keys we have locally stored."]]};

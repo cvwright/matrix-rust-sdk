@@ -1,0 +1,1 @@
+window.SIDEBAR_ITEMS = {"struct":[["MaybeSignature","Represents a signature that is either valid or that could not be decoded."],["Signature","Represents a potentially decoded signature (but not a validated one)."],["Signatures",""]]};

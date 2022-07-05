@@ -1,0 +1,1 @@
+window.SIDEBAR_ITEMS = {"struct":[["Curve25519PublicKey","A Curve25519 public key."],["Ed25519PublicKey","An Ed25519 public key, used to verify digital signatures."],["IdentityKeys","Struct holding the two public identity keys of an account."],["OlmMachine","State machine implementation of the Olm/Megolm encryption protocol used for Matrix end to end encryption."]]};

@@ -1,0 +1,1 @@
+window.SIDEBAR_ITEMS = {"struct":[["DeviceId","A Matrix key ID."],["RoomId","A Matrix room ID."],["ServerName","A Matrix-spec compliant server name."],["UserId","A Matrix user ID."]]};

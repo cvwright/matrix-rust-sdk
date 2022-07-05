@@ -1,0 +1,1 @@
+window.SIDEBAR_ITEMS = {"enum":[["HistoryVisibility","Who can see a room’s history."]]};

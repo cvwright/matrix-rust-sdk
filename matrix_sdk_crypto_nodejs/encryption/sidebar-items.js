@@ -1,0 +1,1 @@
+window.SIDEBAR_ITEMS = {"enum":[["EncryptionAlgorithm","An encryption algorithm to be used to encrypt messages sent to a room."],["VerificationState","The verification state of the device that sent an event to us."]],"struct":[["EncryptionSettings","Settings for an encrypted room."]]};

@@ -1,0 +1,1 @@
+window.SIDEBAR_ITEMS = {"struct":[["OlmMachine","State machine implementation of the Olm/Megolm encryption protocol used for Matrix end to end encryption."]]};
